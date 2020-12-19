@@ -21,4 +21,15 @@ describe('Usuários', () => {
         expect(response.body).toHaveProperty("msg");
         expect(response.status).toBe(200);
     });
+
+    it('Cadastro de usuário com informação faltando ', async() => {
+        const response = await request(app)
+        .post('/users')
+        .send({
+            email: "jose2010@gmail.com",
+            password: "mudar123"
+        });
+        expect(response.body).toHaveProperty("message");
+        expect(response.status).toBe(400);
+    });
 });
